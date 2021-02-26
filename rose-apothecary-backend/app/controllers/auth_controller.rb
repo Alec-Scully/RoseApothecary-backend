@@ -8,7 +8,8 @@ class AuthController < ApplicationController
             @token = encode_token({ user_id: @user.id })
 
             # render json: { user: UserSerializer.new(@user), jwt: @token }, status: :accepted
-            render json: { user: UserSerializer.new(@user), jwt: @token, include: [:cart] }, status: :accepted
+            render json: { user: UserSerializer.new(@user), jwt: @token }, status: :accepted
+            # render json: { user: UserSerializer.new(@user), jwt: @token, include: [:carts] }, status: :accepted
 
         else
             render json: { message: 'Invalid username or password' }, status: :unauthroized
@@ -17,9 +18,9 @@ class AuthController < ApplicationController
 
     def auto_login
         @token = params[:token]
-        # byebug
         user = User.find(JWT.decode(@token, "Children of the Code", true, algorithm: 'HS256')[0]["user_id"])
-        render json: user.to_json(include: [:cart])
+        render json: user
+        # render json: user.to_json(include: [:carts])
         # render json: user, :include => {:pb_private, :pb_publics}
         # render :json => user.to_json(:include => {:pb_private})
     end
