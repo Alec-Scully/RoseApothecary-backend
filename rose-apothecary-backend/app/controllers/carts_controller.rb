@@ -7,26 +7,26 @@ class CartsController < ApplicationController
  
     def show
        cart = Cart.find(params[:id]) 
-       render json: Cart.to_json(cart_serializer_options) 
+       render json: cart.to_json(cart_serializer_options) 
     end
  
     def create 
        cart = Cart.new(cart_serializer_options)
        # byebug
-       Cart.save
-       render json: Cart.to_json()
+       cart.save
+       render json: cart.to_json()
     end
  
     def update
        cart = Cart.find(params[:id])
-       Cart.update(cart_serializer_options)
+       cart.update(cart_serializer_options)
     #    Cart.update(:pixel_board => params[:pixel_board])
-       render json: Cart.to_json()
+       render json: cart.to_json()
     end
  
     def destroy
        cart = Cart.find(params[:id])
-       Cart.destroy
+       cart.destroy
    end
  
      private

@@ -7,26 +7,26 @@ class ReviewsController < ApplicationController
  
     def show
        review = Review.find(params[:id]) 
-       render json: Review.to_json(review_serializer_options) 
+       render json: review.to_json(review_serializer_options) 
     end
  
     def create 
        review = Review.new(review_serializer_options)
        # byebug
-       Review.save
-       render json: Review.to_json()
+       review.save
+       render json: review.to_json()
     end
  
     def update
        review = Review.find(params[:id])
-       Review.update(review_serializer_options)
+       review.update(review_serializer_options)
     #    Review.update(:pixel_board => params[:pixel_board])
-       render json: Review.to_json()
+       render json: review.to_json()
     end
  
     def destroy
        review = Review.find(params[:id])
-       Review.destroy
+       review.destroy
    end
  
      private

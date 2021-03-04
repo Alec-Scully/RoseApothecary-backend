@@ -1,4 +1,4 @@
-class Items < ApplicationController
+class ItemsController < ApplicationController
     skip_before_action :authorized, only: [:index, :destroy]
 
     def index
@@ -7,26 +7,26 @@ class Items < ApplicationController
  
     def show
        item = Item.find(params[:id]) 
-       render json: Item.to_json(item_serializer_options) 
+       render json: item.to_json(item_serializer_options) 
     end
  
     def create 
        item = Item.new(item_serializer_options)
        # byebug
-       Item.save
-       render json: Item.to_json()
+       item.save
+       render json: item.to_json()
     end
  
     def update
        item = Item.find(params[:id])
-       Item.update(item_serializer_options)
+       item.update(item_serializer_options)
     #    Item.update(:pixel_board => params[:pixel_board])
-       render json: Item.to_json()
+       render json: item.to_json()
     end
  
     def destroy
        item = Item.find(params[:id])
-       Item.destroy
+       item.destroy
    end
  
      private

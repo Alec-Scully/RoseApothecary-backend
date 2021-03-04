@@ -7,26 +7,25 @@ class CartItemsController < ApplicationController
  
     def show
        cartItem = CartItem.find(params[:id]) 
-       render json: CartItem.to_json(cart_item_serializer_options) 
+       render json: cartItem.to_json(cart_item_serializer_options) 
     end
  
     def create 
-       cartItem = CartItem.new(cart_item_serializer_options)
-       # byebug
-       CartItem.save
-       render json: CartItem.to_json()
+       cartItem = CartItem.new(cart_item_params)
+       cartItem.save
+       render json: cartItem.to_json()
     end
  
     def update
        cartItem = CartItem.find(params[:id])
-       CartItem.update(cart_item_serializer_options)
+       cartItem.update(cart_item_params)
     #    CartItem.update(:pixel_board => params[:pixel_board])
-       render json: CartItem.to_json()
+       render json: cartItem.to_json()
     end
  
     def destroy
        cartItem = CartItem.find(params[:id])
-       CartItem.destroy
+       cartItem.destroy
    end
  
      private

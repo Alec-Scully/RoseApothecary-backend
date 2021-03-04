@@ -18,19 +18,21 @@ ActiveRecord::Schema.define(version: 2021_02_24_005743) do
   create_table "cart_items", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "item_id"
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "carts", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "items", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
-    t.integer "cost"
+    t.string "cost"
     t.string "category", array: true
     t.string "image"
     t.string "description"
