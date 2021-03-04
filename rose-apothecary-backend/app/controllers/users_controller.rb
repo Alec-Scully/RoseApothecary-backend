@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create, :index]
+    skip_before_action :authorized, only: [:create, :index, :update, :show]
 
     def index
-        render json: User.all.to_json(user_serializer_options)
+        render json: User.all.to_json(user_params)
     end
 
     def show
         user = User.find(params[:id])
-        render json: user.to_json(user_serializer_options) 
+        render json: user.to_json(user_params) 
     end
 
     def create
         user = User.create(user_params)
-        Cart.create(user_id: user.id)
+        # Cart.create(user_id: user.id)
 
         if user.valid?
           render json: { user: user, status: :created}
@@ -23,8 +23,8 @@ class UsersController < ApplicationController
 
     def update
         user = User.find(params[:id])
-        user.update(user_serializer_options)
-        render json: user.to_json(user_serializer_options)
+        user.update(user_params)
+        render json: user.to_json(user_params)
     end
 
     def destroy
@@ -41,7 +41,8 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
+        params.require(:user).permit!
+        # params.require(:user).permit(:first_name, :last_name, :username, :email, :password, :cart)
     end
 # User.create(first_name: , last_name: , username: , email: , password: )
 

@@ -12,12 +12,12 @@ CartItem.destroy_all
 Item.destroy_all
 Review.destroy_all
 
-# User.create(first_name: , last_name: , username: , email: , password: )
-User.create(first_name: "Admin", last_name: "Admin", username: "Admin", email: "Admin@admin.com", password: "testing1")
-User.create(first_name: "Alec", last_name: "Scully", username: "Smartalec246", email: "scullyalec@gmail.com", password: "testing1")
+# User.create(first_name: , last_name: , username: , email: , password: , cart: [])
+User.create(first_name: "Admin", last_name: "Admin", username: "Admin", email: "Admin@admin.com", password: "testing1", cart: [])
+User.create(first_name: "Alec", last_name: "Scully", username: "Smartalec246", email: "scullyalec@gmail.com", password: "testing1", cart: [])
 
 # Cart.create(user_id: )
-Cart.create(user_id: User.first.id)
+# Cart.create(user_id: User.first.id)
 
 # Item.create(name: , cost: , category: , image: , description: )
 Item.create(name: "Rose Apothecary Mug", cost: "14.08", category: ["Drinkware"], image: "https://i.etsystatic.com/24655207/r/il/225fa8/2753595254/il_1588xN.2753595254_rm71.jpg", description: "Cereamic mug, complete with the Rose Apothecary Logo")
@@ -42,7 +42,7 @@ Item.create(name: "Bleu Cheese", cost: "50.00", category: ["Food"], image: "http
 Item.create(name: "Plunger", cost: "9.95", category: ["Toiletries", "Accessories"], image: "https://www.thespruce.com/thmb/4IkYyK9CGJHV5_yNnORds9k0fSc=/2121x1414/filters:fill(auto,1)/GettyImages-173683465-58f822b83df78ca159d4543a.jpg", description: "A regular plunger for every day bathroom usage.")
 
 # CartItem.create(cart_id: , item_id: )
-CartItem.create(cart_id: Cart.first.id, item_id: Item.first.id, quantity: 1)
+CartItem.create(user_id: User.first.id, item_id: Item.first.id, quantity: 1)
 
 # Review.create(user_id: , item_id: , comment: , rating: )
 Review.create(user_id: User.first.id, item_id: Item.first.id, comment: "Man this product rocks!", rating: 5)

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   post '/auto_login', to: 'auth#auto_login'
   get '/logged_in', to: 'application#logged_in?'
 
-  resources :users, only: [:create, :index, :show]
+  # resources :users, only: [:create, :index, :show, :post]
+  resources :users
   resources :carts
   resources :items
   resources :cart_items 

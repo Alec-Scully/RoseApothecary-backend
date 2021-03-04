@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :destroy]
+    skip_before_action :authorized, only: [:index, :destroy, :update]
 
     def index
        render json: CartItem.all.to_json(cart_item_serializer_options)
