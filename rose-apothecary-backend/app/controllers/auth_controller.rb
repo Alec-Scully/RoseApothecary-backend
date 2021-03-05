@@ -7,7 +7,7 @@ class AuthController < ApplicationController
         # byebug
         if @user && @user.authenticate(user_login_params[:password])
             @token = encode_token({ user_id: @user.id })
-            render json: { user: @user, include: [:cart, include: [:cart_item]] , jwt: @token }, status: :accepted
+            render json: { user: @user, include: [:cart] , jwt: @token }, status: :accepted
 
         else
             render json: { message: 'Invalid username or password' }, status: :unauthorized
