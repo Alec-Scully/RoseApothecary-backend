@@ -37,7 +37,7 @@ class CartItemsController < ApplicationController
     end
  
     def cart_item_params
-       params.require(:cart_item).permit!
+       params.require(:cart_item).permit(:cart_id, :item_id, :quantity)
        # params.require(:cart_item).permit(:name, :user_id, { pixel_board: [] })
    end
 end
