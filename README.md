@@ -11,8 +11,9 @@ For this project I decided to create an e-commerse store for the Rose Apothecary
 To start we run:
 
 ```javascript
-npm install
-npm start
+rails db:migrate
+rails db:seed
+rails s
 ```
 
 ##User Stories:
@@ -21,6 +22,8 @@ npm start
   *A user should be able to sign-up or log-in/logout
     *A user should be able to automatically log-in if they have done so previously and not logged-out on the same device.
   *A user should be able to add, update, or remove items from their own personal cart
+  
+This backend is created using a Ruby on Rails API
 
 I decided to create this app to give myself a challenge. CSS was not a skill of mine prior to this project, and I tried to make this website look and feel as authentic as possible.
 
